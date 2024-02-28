@@ -1,26 +1,34 @@
-import React,{useContext, useEffect, useState} from 'react';
-import { ProductContext } from '../contexts/ProductContext'
+import React,{ useEffect} from 'react';
+
 import Product from '../components/Product'
 import Hero from '../components/Hero';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchProducts } from '../features/product/productSlice';
+import { setItemAmount, setTotal } from '../features/cart/cartSlice';
 
 
 const Home = () => {
-      //const {products} = useContext(ProductContext);
+     
       
      
    
      
     
      const dispatch = useDispatch();
-    //const [products,setProducts] = useState([])
+   
     const products = useSelector(state=>state.product.data);
-    console.log(products)
+    const {cart} = useSelector(state=>state.cart)
+    
      useEffect(()=>{
       dispatch(fetchProducts())
+      
      },[dispatch])
+     useEffect(()=>{
+      dispatch(setItemAmount())
+      dispatch(setTotal())
+     },[cart])
+    
      
   const filteredProducts =
  products &&   products.filter((item)=>{

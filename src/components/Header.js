@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 
 import {BsBag} from "react-icons/bs"
-import { CartContext } from '../contexts/CartContext';
+
 import { Link, useSearchParams } from 'react-router-dom';
 import Logo from "../img/logo.svg"
 import { handleOpen } from '../features/sidebar/sidebarSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 const Header = () => {
   const [isActive,setIsActive] = useState(true);
   const dispatch = useDispatch();
+  const {itemAmount} = useSelector(state=>state.cart)
 
-
-  const {itemAmount} = useContext(CartContext);
+ 
   useEffect(()=>{
     window.addEventListener('scroll',()=>{
       window.scrollY > 60 ? setIsActive(false) : setIsActive(true);
