@@ -1,14 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { ProductContext } from '../contexts/ProductContext';
-import { CartContext } from '../contexts/CartContext';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../features/cart/cartSlice';
+import useDispatcher from '../hooks/useDispatcher';
+
 const ProductDetails = () => {
   const {id} = useParams();
-const {products} = useContext(ProductContext);
-const {addToCart} = useContext(CartContext);
-const product = products.find(item=>{
-  return item.id === parseInt(id);
-})
+  console.log(id)
+// const {products} = useContext(ProductContext);
+// const {addToCart} = useContext(CartContext);
+// const product = products.find(item=>{
+//   return item.id === parseInt(id);
+// })
+
+
+const dispatch = useDispatch();
+const {singleProduct} = useSelector(state => state.product)
+console.log(singleProduct)
+
+const product = singleProduct;
+
+const {changeAllState} = useDispatcher()
+
+
 
 if(!product){
   return(
@@ -33,7 +48,8 @@ const {title,price,description,image } = product;
           $ {price}
         </div>
         <p className='mb-8'>{description}</p>
-        <button onClick={()=> addToCart(product,product.id)} className='bg-primary py-4 px-8 text-white'>
+        <button onClick={()=>{dispatch(addToCart(product,id));changeAllState(product,id)}}
+         className='bg-primary py-4 px-8 text-white'>
           Add to Cart
         </button>
       </div>

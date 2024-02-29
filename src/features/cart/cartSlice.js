@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
-import { useDispatch } from "react-redux";
+
 
 const initialState = {
     cart:[],

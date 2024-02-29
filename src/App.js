@@ -5,12 +5,13 @@ import ProductDetails from './pages/ProductDetails';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
+import { setItemAmount, setTotal } from './features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
 const App = () => {
  
-      
      
   return <div className='overflow-hidden'>
     <Router>

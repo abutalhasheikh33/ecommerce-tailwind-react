@@ -17,17 +17,17 @@ const Home = () => {
     
      const dispatch = useDispatch();
    
-    const products = useSelector(state=>state.product.data);
+    const {products} = useSelector(state=>state.product);
     const {cart} = useSelector(state=>state.cart)
     
      useEffect(()=>{
       dispatch(fetchProducts())
       
      },[dispatch])
-     useEffect(()=>{
-      dispatch(setItemAmount())
-      dispatch(setTotal())
-     },[cart])
+    //  useEffect(()=>{
+    //   dispatch(setItemAmount())
+    //   dispatch(setTotal())
+    //  },[cart])
     
      
   const filteredProducts =
