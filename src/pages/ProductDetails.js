@@ -1,25 +1,25 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../features/cart/cartSlice';
 import useDispatcher from '../hooks/useDispatcher';
 
+
 const ProductDetails = () => {
   const {id} = useParams();
-  console.log(id)
-// const {products} = useContext(ProductContext);
-// const {addToCart} = useContext(CartContext);
-// const product = products.find(item=>{
-//   return item.id === parseInt(id);
-// })
+  const dispatch = useDispatch();
+  const { products} = useSelector(state => state.product)
+  const [product,setProduct] = useState(null);
 
+useEffect(()=>{
+  if (products.length > 0) {
+    
+    const displayItem = products.find((item)=>item.id == id);
+    setProduct(displayItem)
+    
+  }
+},[products,id])
 
-const dispatch = useDispatch();
-const {singleProduct} = useSelector(state => state.product)
-console.log(singleProduct)
-
-const product = singleProduct;
 
 const {changeAllState} = useDispatcher()
 

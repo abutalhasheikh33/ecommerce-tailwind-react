@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     products:[],
-    singleProduct:{},
+    product:{},
     isLoading:false,
     isError:false
     
@@ -19,8 +19,12 @@ export const productSlice = createSlice({
     initialState,
     reducers:{
         findAProduct:(state,action)=>{
-            const product = state.products.find((product)=>product.id===action.payload);
-            state.singleProduct = product;
+            
+                
+                const product = state.products.find((product)=>product.id===action.payload);
+                state.product = product;
+           
+            
         }
     },
     extraReducers:(builder)=>{

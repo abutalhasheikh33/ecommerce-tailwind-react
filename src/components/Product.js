@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {BsPlus,BsEyeFill} from 'react-icons/bs';
-
 import { useDispatch } from 'react-redux';
 import { addToCart, setItemAmount } from '../features/cart/cartSlice';
 import { findAProduct } from '../features/product/productSlice';
@@ -10,7 +9,7 @@ const Product = ({product}) => {
   
   const { id,image,category,title,price } = product
   const {changeAllState} = useDispatcher()
- // const {addToCart} = useContext(CartContext);
+ 
   const dispatch = useDispatch()
   return <div>
    <div className='border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition'>

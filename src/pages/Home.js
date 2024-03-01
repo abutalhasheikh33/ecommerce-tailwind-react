@@ -1,11 +1,8 @@
 import React,{ useEffect} from 'react';
-
-import Product from '../components/Product'
-import Hero from '../components/Hero';
+import {Product,Hero} from "../components/index"
 import { useDispatch, useSelector } from 'react-redux';
-
 import { fetchProducts } from '../features/product/productSlice';
-import { setItemAmount, setTotal } from '../features/cart/cartSlice';
+
 
 
 const Home = () => {
@@ -18,16 +15,13 @@ const Home = () => {
      const dispatch = useDispatch();
    
     const {products} = useSelector(state=>state.product);
-    const {cart} = useSelector(state=>state.cart)
+    
     
      useEffect(()=>{
       dispatch(fetchProducts())
       
-     },[dispatch])
-    //  useEffect(()=>{
-    //   dispatch(setItemAmount())
-    //   dispatch(setTotal())
-    //  },[cart])
+     },[dispatch,products])
+
     
      
   const filteredProducts =

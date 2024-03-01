@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {IoMdAdd, IoMdClose, IoMdRemove} from 'react-icons/io'
-
 import {increaseAmount,decreaseAmount,removeFromCart} from "../features/cart/cartSlice";
 import { useDispatch } from 'react-redux';
 import useDispatcher from '../hooks/useDispatcher';

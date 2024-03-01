@@ -1,8 +1,6 @@
 import React, {  useEffect, useState } from 'react';
-
 import {BsBag} from "react-icons/bs"
-
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from "../img/logo.svg"
 import { handleOpen } from '../features/sidebar/sidebarSlice';
 import { useDispatch, useSelector } from 'react-redux';
