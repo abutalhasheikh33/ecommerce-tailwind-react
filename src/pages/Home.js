@@ -1,16 +1,38 @@
-import React,{useContext} from 'react';
-import { ProductContext } from '../contexts/ProductContext'
-import Product from '../components/Product'
-import Hero from '../components/Hero';
+import React,{ useEffect} from 'react';
+import {Product,Hero} from "../components/index"
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../features/product/productSlice';
+
+
+
 const Home = () => {
-      const {products} = useContext(ProductContext);
-  const filteredProducts = products.filter((item)=>{
+     
+      
+     
+   
+     
+    
+     const dispatch = useDispatch();
+   
+    const {products} = useSelector(state=>state.product);
+    
+    
+     useEffect(()=>{
+      dispatch(fetchProducts())
+      
+     },[dispatch,products])
+
+    
+     
+  const filteredProducts =
+ products &&   products.filter((item)=>{
     return (
       item.category === "men's clothing" || item.category === "women's clothing"
     );
   })
   console.log(filteredProducts)
   return (
+    filteredProducts &&
   <div>
     <Hero />
     <section className='py-16'>

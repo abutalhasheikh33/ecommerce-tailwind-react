@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { SidebarContext } from '../contexts/SidebarContext';
+import React, {  useEffect, useState } from 'react';
 import {BsBag} from "react-icons/bs"
-import { CartContext } from '../contexts/CartContext';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from "../img/logo.svg"
+import { handleOpen } from '../features/sidebar/sidebarSlice';
+import { useDispatch, useSelector } from 'react-redux';
 const Header = () => {
   const [isActive,setIsActive] = useState(true);
-  const {isOpen,setIsOpen} =  useContext(SidebarContext);
-  const {itemAmount} = useContext(CartContext);
+  const dispatch = useDispatch();
+  const {itemAmount} = useSelector(state=>state.cart)
+
+ 
   useEffect(()=>{
     window.addEventListener('scroll',()=>{
       window.scrollY > 60 ? setIsActive(false) : setIsActive(true);
@@ -23,7 +25,7 @@ const Header = () => {
    
       
 
-    <div className='cursor-pointer flex relative' onClick={()=> setIsOpen(!isOpen)}>
+    <div className='cursor-pointer flex relative' onClick={()=>dispatch(handleOpen()) }>
       <BsBag className='text-2xl' />
       <div className='bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] 
       h-[18px] text-white rounded-full flex justify-center items-center'>{itemAmount}</div>

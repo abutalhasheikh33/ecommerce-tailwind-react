@@ -1,26 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router,Route,Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route,createBrowserRouter,createRoutesFromChildren,RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Sidebar from './components/Sidebar';
+import { useDispatch } from 'react-redux';
+import { fetchProducts } from './features/product/productSlice';
+import Layout from './components/Layout';
+
+
 
 const App = () => {
-  return <div className='overflow-hidden'>
-    <Router>
-      <Header />
-      
-      <Routes>
+  const router = createBrowserRouter(
+    createRoutesFromChildren(
+      <Route path="/" element={<Layout />}>
+        <Route path='' element={<Home />}></Route>
+        <Route path='/product/:id' element={<ProductDetails />}></Route>
+      </Route>
+    )
+  )
+ const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchProducts());
+    
+  },[dispatch])
 
-        <Route path='/' element={<Home />} />
-        <Route path='/product/:id' element={<ProductDetails />} />
-        
-      </Routes>
-      <Sidebar />
-      <Footer />
-    </Router>
-  </div>;
+return  <RouterProvider router={router} />
 };
 
 export default App;
