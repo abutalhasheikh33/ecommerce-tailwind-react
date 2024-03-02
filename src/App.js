@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route,createBrowserRouter,createRoutesFromChildren,RouterProvider } from 'react-router-dom';
+import { Route, createBrowserRouter, createRoutesFromChildren, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import ProductDetails from './pages/ProductDetails';
 import { useDispatch } from 'react-redux';
@@ -10,11 +10,10 @@ import Layout from './components/Layout';
 
 const App = () => {
   const dispatch = useDispatch()
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(fetchProducts());
-    console.log("HI")
-  },[])
-  console.log("HI5")
+    console.log("useeffect")
+  }, [])
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path="/" element={<Layout />}>
@@ -23,10 +22,10 @@ const App = () => {
       </Route>
     )
   )
- 
- 
- 
-return  <RouterProvider router={router} />
+
+
+
+  return <RouterProvider router={router} />
 };
 
 export default App;
