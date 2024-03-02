@@ -17,10 +17,6 @@ const Home = () => {
     const {products} = useSelector(state=>state.product);
     
     
-     useEffect(()=>{
-      dispatch(fetchProducts())
-      
-     },[dispatch,products])
 
     
      
@@ -30,7 +26,8 @@ const Home = () => {
       item.category === "men's clothing" || item.category === "women's clothing"
     );
   })
-  console.log(filteredProducts)
+  console.log("filteredProducts",filteredProducts)
+  console.log("HI2")
   return (
     filteredProducts &&
   <div>

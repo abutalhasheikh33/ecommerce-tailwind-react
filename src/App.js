@@ -9,6 +9,12 @@ import Layout from './components/Layout';
 
 
 const App = () => {
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchProducts());
+    console.log("HI")
+  },[])
+  console.log("HI5")
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path="/" element={<Layout />}>
@@ -17,12 +23,9 @@ const App = () => {
       </Route>
     )
   )
- const dispatch = useDispatch()
-  useEffect(()=>{
-    dispatch(fetchProducts());
-    
-  },[dispatch])
-
+ 
+ 
+ 
 return  <RouterProvider router={router} />
 };
 
