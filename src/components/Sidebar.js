@@ -6,6 +6,7 @@ import {CartItem} from "../components/index"
 import { handleClose } from '../features/sidebar/sidebarSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../features/cart/cartSlice';
+import useDispatcher from '../hooks/useDispatcher';
 
 const Sidebar = () => {
 
@@ -13,7 +14,7 @@ const Sidebar = () => {
   
   const isOpen = useSelector(state=>state.sidebar.isOpen);
   const {cart,total,itemAmount} = useSelector(state=>state.cart)
-  
+  const {changeAllState} = useDispatcher();
 
 
   return <div className={`${ isOpen ? 'right-0':'-right-full'} w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-vw-[30vw] transition-all duration-300 z-20 px-4 lg:px-[35px]`}>
@@ -39,7 +40,7 @@ const Sidebar = () => {
         <span className='mr-2'>Total:</span>{`${parseFloat(total).toFixed(2)}`}
         </div>
       
-      <div onClick={()=>dispatch(clearCart())} className='cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl'><FiTrash2></FiTrash2></div>
+      <div onClick={()=>{dispatch(clearCart());changeAllState()}} className='cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl'><FiTrash2></FiTrash2></div>
     </div>
     <Link className='bg-gray-200 flex p-4 justify-center items-center text-primary
     w-full font-medium'>View Cart</Link>
